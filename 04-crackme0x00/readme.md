@@ -1,0 +1,5 @@
+First, I scanned the binary using the file command and saw that it is a 64-bit ELF executable and not stripped, meaning the function names and symbols are intact. Then, I loaded the binary into GDB (pwndbg) and disassembled the main function (disas main) to read the assembly instructions. At offset +103 (0x4011fd), I spotted a strcmp function call comparing the user input (RDI) against a hardcoded string (RSI). Finally, I set a breakpoint at this strcmp call (b *main+103), ran the program, and inspected the memory address stored in RSI using x/s $rsi, which revealed the hardcoded password 250382.
+
+<img width="1918" height="63" alt="Screenshot From 2026-11-22 19-21-06" src="https://github.com/user-attachments/assets/6ba3a930-4fdc-481e-91e9-a2675997abe8" />
+<img width="816" height="692" alt="Screenshot From 2026-11-22 19-24-35" src="https://github.com/user-attachments/assets/87efbfb1-f989-4a96-985a-06a30320face" />
+<img width="818" height="50" alt="Screenshot From 2026-11-22 19-25-42" src="https://github.com/user-attachments/assets/a71a9f90-b272-4134-8e61-f3162046da26" />
