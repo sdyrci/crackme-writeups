@@ -1,0 +1,7 @@
+Analyzing this re-stripped binary in radare2 revealed that main (0x004013a6) passes the input to fcn.00401309, which sums each parsed digit and calls fcn.0040125f once the total equals 16 (0x10). Inside this stage, fcn.004011f6 scans envp for a variable starting with "LOL", setting the global flag at 0x00404064 to 1 and returning 1 upon a match (or terminating immediately via exit(-1) if absent). Finally, fcn.0040125f confirms that the numeric input is even (and eax, 1 == 0) and the global flag equals 1 before printing "Password OK!", which I solved by running LOL=1 ./crackme0x09 with 628 to finish the IOLI series.
+
+<img width="1618" height="563" alt="Screenshot From 2026-11-24 00-51-06" src="https://github.com/user-attachments/assets/50c57872-8f51-4385-8396-227002bbc924" />
+<img width="1618" height="991" alt="Screenshot From 2026-11-24 00-50-53" src="https://github.com/user-attachments/assets/fa642ce2-e20a-4b21-9f83-906ce1afbece" />
+<img width="1636" height="910" alt="Screenshot From 2026-11-24 00-50-41" src="https://github.com/user-attachments/assets/6d29ef95-b568-451f-8c3d-f289367370ff" />
+<img width="1636" height="686" alt="Screenshot From 2026-11-24 00-50-23" src="https://github.com/user-attachments/assets/f747cc58-0c77-4e55-9e40-a1c0a772ee26" />
+<img width="1636" height="91" alt="Screenshot From 2026-11-24 00-50-09" src="https://github.com/user-attachments/assets/ce16106b-51a1-4b28-850b-8a0e1064c183" />
