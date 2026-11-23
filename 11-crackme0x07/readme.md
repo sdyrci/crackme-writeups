@@ -1,0 +1,8 @@
+Since the binary is stripped, I first located the actual main function (0x401383) from the __libc_start_main call inside entry0. The main function passes both the user input and environment variables (envp) to 0x4012e6, which parses each character into an integer and calls 0x40125a once their sum equals 16 (0x10). Inside this stage, 0x4011f6 iterates through envp looking for a variable starting with "LOL", returning 1 and setting the global flag at 0x404064 to 1 upon a match. Finally, 0x40125a verifies that the numeric input is even (and eax, 1 == 0) and the global flag equals 1 before printing "Password OK!", which I triggered by running LOL=1 ./crackme0x07 and providing 646.
+
+<img width="1357" height="532" alt="Screenshot From 2026-11-24 00-32-29" src="https://github.com/user-attachments/assets/cb71fb89-5ee4-4801-872c-8d81cd94fd66" />
+<img width="1466" height="611" alt="Screenshot From 2026-11-24 00-32-41" src="https://github.com/user-attachments/assets/eb73559c-3824-43fc-9cfa-dfa74de87e1c" />
+<img width="1561" height="991" alt="Screenshot From 2026-11-24 00-33-09" src="https://github.com/user-attachments/assets/c1d6aeee-c350-42d1-a427-4c47aeb3d36d" />
+<img width="1561" height="911" alt="Screenshot From 2026-11-24 00-33-23" src="https://github.com/user-attachments/assets/ff6217e0-237d-440d-a921-39765154925d" />
+<img width="1561" height="711" alt="Screenshot From 2026-11-24 00-33-39" src="https://github.com/user-attachments/assets/be5a7b8b-126d-46ba-a5c1-a0434cf9dfff" />
+<img width="1561" height="93" alt="Screenshot From 2026-11-24 00-34-15" src="https://github.com/user-attachments/assets/3b974a5c-d558-40f6-aba0-45ccff3161ac" />
