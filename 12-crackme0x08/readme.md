@@ -1,0 +1,9 @@
+Comparing crackme0x07 and crackme0x08 with radiff2 -A -C revealed that this binary is unstripped, sym.parell remains identical, and a new function named sym.che was introduced. Inspecting the functions in radare2 via afl and pdf showed that sym.che (0x004012e6) is merely unreferenced decoy code that prints "Password Incorrect!" and exits. The actual validation path starts from main (0x004013a1) into sym.check (0x00401304), which sums the digits of the input and calls sym.parell (0x0040125a) once the sum equals 16 (0x10); inside sym.parell, sym.dummy (0x004011f6) scans envp for a variable starting with "LOL" to set the global flag obj.LOL (0x404064) to 1, and once the numeric input is confirmed to be even, it prints "Password OK!". Running LOL=1 ./crackme0x08 and providing 88 satisfied all conditions and solved the challenge.
+
+<img width="1729" height="827" alt="Screenshot From 2026-11-24 00-39-51" src="https://github.com/user-attachments/assets/ce15d57e-1fdc-47ad-a3cd-3d307e3c564e" />
+<img width="1729" height="710" alt="Screenshot From 2026-11-24 00-43-04" src="https://github.com/user-attachments/assets/68c3ef82-cdcd-4de0-854f-08c235833e1e" />
+<img width="1729" height="688" alt="Screenshot From 2026-11-24 00-43-14" src="https://github.com/user-attachments/assets/4e90f5a7-387b-422c-835a-37d030ec077a" />
+<img width="1729" height="190" alt="Screenshot From 2026-11-24 00-43-24" src="https://github.com/user-attachments/assets/5f057418-1ecf-4fca-841c-3fd313143dc2" />
+<img width="1636" height="992" alt="Screenshot From 2026-11-24 00-43-43" src="https://github.com/user-attachments/assets/5490050d-d103-4bde-b3a3-76b7d08a165f" />
+<img width="1636" height="611" alt="Screenshot From 2026-11-24 00-43-53" src="https://github.com/user-attachments/assets/ff18816b-1cd3-4587-9811-c981043edfd5" />
+<img width="1636" height="91" alt="Screenshot From 2026-11-24 00-44-23" src="https://github.com/user-attachments/assets/e7212178-dbe1-4918-aa48-2317c4138012" />
